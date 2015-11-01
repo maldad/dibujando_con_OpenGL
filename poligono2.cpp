@@ -1,10 +1,18 @@
+/*programa que dibuja poligonos regulares y ademas...
+TODO
+[] - Escalamiento con W y S
+[] - Rotacion con A y D
+[] - Traslacion usando las flechitas
+[] - Lados de 3 a 9 con teclas de número
+*/
+
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
 
 const float radio = 0.7;
 float x, y;
-int lados;
+int lados = 3;
 float angle;// = 360/lados;
 float incAngle;// = 360/lados;
 
@@ -16,7 +24,11 @@ void pedirLados(){
     return;
 }
 
-void display(){
+//args: lados,
+void poligono(int l){
+    lados = l;
+    angle = 360/lados;
+    incAngle = angle;
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.3, 0.3, 0.6);
     glBegin(GL_POLYGON);
@@ -27,12 +39,14 @@ void display(){
         //printf("%f %f %f\n", x, y, angle);
         glVertex2f(x, y);
         angle += incAngle;
-    }
-
+    }//for
     glEnd();
     glFlush();
-}//display
+}//poligono
 
+void display(void){
+    poligono(lados);
+}//display
 
 void reshape(int w, int h){
     glViewport(0.0, 0.0, (GLsizei)w, (GLsizei)h);
@@ -46,9 +60,33 @@ void reshape(int w, int h){
 void keyboard(unsigned char key, int x, int y){
     switch (key) {
         case 27:
+            puts("EXIT...");
             exit(0);
             break;
+        case 51:
+            lados = 3;
+        break;
+        case 52:
+            lados = 4;
+        break;
+        case 53:
+            lados = 5;
+        break;
+        case 54:
+            lados = 6;
+        break;
+        case 55:
+            lados = 7;
+        break;
+        case 56:
+            lados = 8;
+        break;
+        case 57:
+            lados = 9;
+        break;
     }//switch
+    glutPostRedisplay(); //Mark the normal plane of current window as needing
+    //to be redisplayed.
 }//keyboard
 
 void arrowkey(int key, int x, int y){
@@ -61,13 +99,13 @@ void arrowkey(int key, int x, int y){
 
         case(GLUT_KEY_UP):
         break;
-    }
+    }//switch
     glutPostRedisplay();
 }//arrowkey
 
 //Ejecución principal
 int main(int argc, char **argv){
-  pedirLados();
+  //pedirLados();
   glutInit(&argc, argv); //es la que echa andar openGL
   //Buffer simple
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB ); //inicia el modo de visualizacion del programa
