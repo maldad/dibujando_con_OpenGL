@@ -33,6 +33,38 @@ void display(){
     glFlush();
 }//display
 
+
+void reshape(int w, int h){
+    glViewport(0.0, 0.0, (GLsizei)w, (GLsizei)h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    //glOrtho(-10.0, 10.0, -10.0, 10.0, 0.1, 20.0); //X, Y, Z
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -0.1, 20.0); //X, Y, Z
+    glMatrixMode(GL_MODELVIEW);
+}//reshape
+
+void keyboard(unsigned char key, int x, int y){
+    switch (key) {
+        case 27:
+            exit(0);
+            break;
+    }//switch
+}//keyboard
+
+void arrowkey(int key, int x, int y){
+    switch (key) {
+        case (GLUT_KEY_LEFT):
+        break;
+
+        case(GLUT_KEY_RIGHT):
+        break;
+
+        case(GLUT_KEY_UP):
+        break;
+    }
+    glutPostRedisplay();
+}//arrowkey
+
 //Ejecución principal
 int main(int argc, char **argv){
   pedirLados();
@@ -44,7 +76,11 @@ int main(int argc, char **argv){
   glutCreateWindow("Poligono"); //lanza la ventana
   //Llamada a la función de dibujado
   glutDisplayFunc(display); //OpenGL se refresca solito
-  //glutReshapeFunc();
+
+  glutReshapeFunc(reshape);
+  glutKeyboardFunc(keyboard);
+  glutSpecialFunc(arrowkey);
+
   glutMainLoop();
   return 0;
 }//main
