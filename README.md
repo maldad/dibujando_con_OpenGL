@@ -16,3 +16,5 @@
 ⇒ Dibuja un poligono regular de N lados
 
 * Flechas de direccion: (↑ ↓ ← →) ⇒ Mueven la figura hacia la direccion indicada
+
+* Esc ⇒ Salir del programa

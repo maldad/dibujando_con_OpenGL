@@ -4,7 +4,7 @@ TODO
 [x] - Rotacion con A y D
 [x] - Traslacion usando las flechitas
 [x] - Lados de 3 a 9 con teclas de número
-[ ] - Recalcular el origen xz, yz, para que siempre sea el centro de la figura
+[x] - Recalcular el origen xz, yz, para que siempre sea el centro de la figura
 */
 
 #include <GL/glut.h>
@@ -136,23 +136,27 @@ void arrowkey(int key, int x, int y){
             if(tx <= -1.0)
                 break;
             tx -= 0.1;
+            xz -= 0.1;
         break;
 
         case(GLUT_KEY_RIGHT):
             if(tx >= 1.0)
                 break;
             tx += 0.1;
+            xz += 0.1;
         break;
 
         case(GLUT_KEY_UP):
             if(ty >= 1.0)
                 break;
             ty += 0.1;
+            yz += 0.1;
         break;
         case(GLUT_KEY_DOWN):
             if(ty <= -1.0)
                 break;
             ty -= 0.1;
+            yz -= 0.1;
         break;
     }//switch
     glutPostRedisplay();
