@@ -1,9 +1,10 @@
 /*programa que dibuja poligonos regulares y ademas...
 TODO
 [x] - Escalamiento con W y S
-[] - Rotacion con A y D
+[x] - Rotacion con A y D
 [x] - Traslacion usando las flechitas
 [x] - Lados de 3 a 9 con teclas de número
+[ ] - Recalcular el origen xz, yz, para que siempre sea el centro de la figura
 */
 
 #include <GL/glut.h>
@@ -19,8 +20,9 @@ float incAngle;// = 360/lados;
 float sx = 1.0;
 float sy = 1.0;
 //variables de rotacion (punto ANCLA que no se mueve)
-float xz = 0.0;
+float xz = 0.0; //equivalentes a xc, yc
 float yz = 0.0;
+float anguloRotacion = 0.0;
 //variables de traslacion
 float tx = 0.0;
 float ty = 0.0;
@@ -35,17 +37,21 @@ void poligono(){
     glBegin(GL_POLYGON);
 
     for(int i = 0; i < lados; i++){
+        float xaux = 0.0; //guardar aqui el valor de X antes de rotar Y
         x = radio*cos(angle/57.3);
         y = radio*sin(angle/57.3);
         //aplicando escalado...
         x = x * sx;
         y = y * sy;
-        //aplicando rotacion...
-        //x = x + ( (x - x0)*cos(angle/57.3) - (y -y0)*sin(angle/57.3) );
-        //y = y + ( (x - x0)*sin(angle/57.3) + (y - y0)*cos(angle/57.3) );
         //aplicando traslacion
         x = x + tx;
         y = y + ty;
+        //aplicando rotacion...
+        //antes de cambiar X, guardarla en xaux y usar esa para rotar Y
+        xaux = x;
+        x = xz + ( (x - xz)*cos(anguloRotacion/57.3) - (y - yz)*sin(anguloRotacion/57.3) );
+        y = yz + ( (xaux - xz)*sin(anguloRotacion/57.3) + (y - yz)*cos(anguloRotacion/57.3) );
+
         glVertex2f(x, y);
         angle += incAngle;
     }//for
@@ -61,7 +67,7 @@ void reshape(int w, int h){
     glViewport(0.0, 0.0, (GLsizei)w, (GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //glOrtho(-10.0, 10.0, -10.0, 10.0, 0.1, 20.0); //X, Y, Z
+    //glOrtho(-10.0, 10.0, -10.0, 10.0, -0.1, 20.0); //X, Y, Z
     glOrtho(-1.0, 1.0, -1.0, 1.0, -0.1, 20.0); //X, Y, Z
     glMatrixMode(GL_MODELVIEW);
 }//reshape
@@ -106,6 +112,18 @@ void keyboard(unsigned char key, int x, int y){
                 break;
             sx -= 0.1;
             sy -= 0.1;
+        break;
+        case 97: //letra a
+            if(anguloRotacion >= 360){
+                anguloRotacion = 0;
+            }
+            anguloRotacion+=10;
+        break;
+        case 100: //letra d
+            if(anguloRotacion <= 0){
+                anguloRotacion = 360;
+            }
+            anguloRotacion-=10;
         break;
     }//switch
     glutPostRedisplay(); //Mark the normal plane of current window as needing

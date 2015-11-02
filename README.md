@@ -8,6 +8,10 @@
 
 * s ⇒ Zoom out
 
+* a ⇒ Gira a la izquierda
+
+* d ⇒ Gira a la derecha
+
 * Números del 3 al 9
 ⇒ Dibuja un poligono regular de N lados
 
