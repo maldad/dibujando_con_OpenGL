@@ -4,9 +4,11 @@
 ```$ ./poli2```
 
 ##### Controles:
-w ⇒ Zoom in
+* w ⇒ Zoom in
 
-s ⇒ Zoom out
+* s ⇒ Zoom out
 
-Números del 3 al 9
-⇒ Dibuja un poligono regular de N lados 
+* Números del 3 al 9
+⇒ Dibuja un poligono regular de N lados
+
+* Flechas de direccion: (↑ ↓ ← →) ⇒ Mueven la figura hacia la direccion indicada

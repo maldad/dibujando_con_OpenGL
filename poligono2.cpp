@@ -2,7 +2,7 @@
 TODO
 [x] - Escalamiento con W y S
 [] - Rotacion con A y D
-[] - Traslacion usando las flechitas
+[x] - Traslacion usando las flechitas
 [x] - Lados de 3 a 9 con teclas de número
 */
 
@@ -18,6 +18,12 @@ float incAngle;// = 360/lados;
 //variables de escalado
 float sx = 1.0;
 float sy = 1.0;
+//variables de rotacion (punto ANCLA que no se mueve)
+float xz = 0.0;
+float yz = 0.0;
+//variables de traslacion
+float tx = 0.0;
+float ty = 0.0;
 
 //args: lados,
 void poligono(){
@@ -34,6 +40,12 @@ void poligono(){
         //aplicando escalado...
         x = x * sx;
         y = y * sy;
+        //aplicando rotacion...
+        //x = x + ( (x - x0)*cos(angle/57.3) - (y -y0)*sin(angle/57.3) );
+        //y = y + ( (x - x0)*sin(angle/57.3) + (y - y0)*cos(angle/57.3) );
+        //aplicando traslacion
+        x = x + tx;
+        y = y + ty;
         glVertex2f(x, y);
         angle += incAngle;
     }//for
@@ -103,12 +115,26 @@ void keyboard(unsigned char key, int x, int y){
 void arrowkey(int key, int x, int y){
     switch (key) {
         case (GLUT_KEY_LEFT):
+            if(tx <= -1.0)
+                break;
+            tx -= 0.1;
         break;
 
         case(GLUT_KEY_RIGHT):
+            if(tx >= 1.0)
+                break;
+            tx += 0.1;
         break;
 
         case(GLUT_KEY_UP):
+            if(ty >= 1.0)
+                break;
+            ty += 0.1;
+        break;
+        case(GLUT_KEY_DOWN):
+            if(ty <= -1.0)
+                break;
+            ty -= 0.1;
         break;
     }//switch
     glutPostRedisplay();
