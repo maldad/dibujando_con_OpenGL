@@ -10,6 +10,7 @@ TODO
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
+#include <unistd.h>
 
 const float radio = 0.5;
 float x, y;
@@ -26,6 +27,9 @@ float anguloRotacion = 0.0;
 //variables de traslacion
 float tx = 0.0;
 float ty = 0.0;
+//adding
+bool girarDerecha = false;
+bool girarIzquierda = false;
 
 //args: lados,
 void poligono(){
@@ -59,8 +63,38 @@ void poligono(){
     glFlush();
 }//poligono
 
-void display(void){
+void prueba(){
+    if(girarDerecha){
+        for(int i = 0; i < 50; i++){
+            if(anguloRotacion >= 360){
+                anguloRotacion = 0;
+            }
+            anguloRotacion += 10;
+            poligono();
+            usleep(1000*30);
+            printf("ang actual: %f\n", anguloRotacion);
+        }
+        girarDerecha = false;
+    }
+    if(girarIzquierda){
+        for(int i = 0; i < 50; i++){
+            if(anguloRotacion <= 0){
+                anguloRotacion = 360;
+            }
+            anguloRotacion -= 10;
+            poligono();
+            usleep(1000*30);
+            printf("ang actual: %f\n", anguloRotacion);
+        }
+        girarIzquierda = false;
+    }
     poligono();
+}//prueba
+
+
+void display(void){
+    //poligono();
+    prueba();
 }//display
 
 void reshape(int w, int h){
@@ -124,6 +158,12 @@ void keyboard(unsigned char key, int x, int y){
                 anguloRotacion = 360;
             }
             anguloRotacion-=10;
+        break;
+        case 113: //letra q
+            girarDerecha = true;
+        break;
+        case 101: //letra e
+            girarIzquierda = true;
         break;
     }//switch
     glutPostRedisplay(); //Mark the normal plane of current window as needing
