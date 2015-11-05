@@ -16,6 +16,15 @@ los limites del plano
         glVertex2f(-0.94, 0.43);
         glVertex2f(-0.94, 0.0);
     glEnd();
+
+glBegin(GL_POLYGON);
+        glVertex2f(-0.94, 0.0);
+        glVertex2f(-0.94, 0.43);
+        glVertex2f(-0.83, 0.43);
+        glVertex2f(-0.79, 0.5);
+        glVertex2f(-0.99, 0.5);
+        glVertex2f(-0.99, 0.0);
+    glEnd();
 */
 void letra_A(){
     glBegin(GL_POLYGON);
@@ -100,42 +109,33 @@ void letra_U(){
 }//letra_U
 
 void letra_S(){
-    glBegin(GL_POLYGON);
-        glVertex2f(-0.25, 0.4);
-        glVertex2f(-0.25, 0.5);
-        glVertex2f(-0.05, 0.5);
-        glVertex2f(-0.05, 0.4);
-    glEnd();
-    glBegin(GL_POLYGON);
-        glVertex2f(-0.25, 0.2);
-        glVertex2f(-0.25, 0.3);
-        glVertex2f(-0.05, 0.3);
-        glVertex2f(-0.05, 0.2);
-    glEnd();
+    //un fondo blanco...
+    glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_POLYGON);
         glVertex2f(-0.25, 0.0);
-        glVertex2f(-0.25, 0.1);
-        glVertex2f(-0.05, 0.1);
+        glVertex2f(-0.25, 0.5);
+        glVertex2f(-0.05, 0.5);
         glVertex2f(-0.05, 0.0);
     glEnd();
+    //unas sombras para dibujar la letra
+    glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_POLYGON);
-        glVertex2f(-0.25, 0.3);
-        glVertex2f(-0.25, 0.4);
-        glVertex2f(-0.20, 0.4);
-        glVertex2f(-0.20, 0.3);
+        glVertex2f(-0.25, 0.1);
+        glVertex2f(-0.25, 0.2);
+        glVertex2f(-0.15, 0.2);
+        glVertex2f(-0.15, 0.1);
     glEnd();
     glBegin(GL_POLYGON);
-        glVertex2f(-0.10, 0.1);
-        glVertex2f(-0.10, 0.2);
-        glVertex2f(-0.05, 0.2);
-        glVertex2f(-0.05, 0.1);
+        glVertex2f(-0.15, 0.3);
+        glVertex2f(-0.15, 0.4);
+        glVertex2f(-0.05, 0.4);
+        glVertex2f(-0.05, 0.3);
     glEnd();
-
 }//letra_S
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0, 1.0, 1.0);
+    //glColor3f(1.0, 1.0, 1.0);
 
     letra_A();
     letra_G();
