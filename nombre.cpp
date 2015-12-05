@@ -1,62 +1,57 @@
 /*
 dibujar nombre usando poligonos y...
 TODO
-[ ] - buscar la funcion gl que dibuja un punto
+[x] - buscar la funcion gl que dibuja un punto
 y con eso ayudarse a buscar cuales son
 los limites del plano
 */
 
 #include <GL/glut.h>
-//ejemplo poligono concavo
-/*glBegin(GL_POLYGON);
-        glVertex2f(-0.99, 0.0);
-        glVertex2f(-0.99, 0.5);
-        glVertex2f(-0.79, 0.5);
-        glVertex2f(-0.83, 0.43);
-        glVertex2f(-0.94, 0.43);
-        glVertex2f(-0.94, 0.0);
-    glEnd();
+#include <stdio.h>
 
-glBegin(GL_POLYGON);
-        glVertex2f(-0.94, 0.0);
-        glVertex2f(-0.94, 0.43);
-        glVertex2f(-0.83, 0.43);
-        glVertex2f(-0.79, 0.5);
-        glVertex2f(-0.99, 0.5);
-        glVertex2f(-0.99, 0.0);
-    glEnd();
-*/
+//variables de escalado
+float sx = 1.0;
+float sy = 1.0;
+//variables de rotacion (punto ANCLA que no se mueve)
+float xz = 0.0; //equivalentes a xc, yc
+float yz = 0.0;
+float anguloRotacion = 0.0;
+//variables de traslacion
+float tx = 0.0;
+float ty = 0.0;
+
 void color_white(){
     glColor3f(1.0, 1.0, 1.0);
-}
+}//color_white
 void color_black(){
     glColor3f(0.0, 0.0, 0.0);
-}
+}//color_black
+
 void letra_A(){
     //fondo blanco
     //glColor3f(1.0, 1.0, 1.0);
     color_white();
     glBegin(GL_POLYGON);
-        glVertex2f(-0.99, 0.0);
-        glVertex2f(-0.99, 0.5);
-        glVertex2f(-0.79, 0.5);
-        glVertex2f(-0.79, 0.0);
+        glVertex2f(-0.99+tx, 0.0+ty);
+        glVertex2f(-0.99+tx, 0.5+ty);
+        glVertex2f(-0.79+tx, 0.5+ty);
+        glVertex2f(-0.79+tx, 0.0+ty);
     glEnd();
     //sombras para formar la letra
     //glColor3f(0.0, 0.0, 0.0);
     color_black();
     glBegin(GL_POLYGON);
-        glVertex2f(-0.94, 0.0);
-        glVertex2f(-0.94, 0.2);
-        glVertex2f(-0.84, 0.2);
-        glVertex2f(-0.84, 0.0);
+        glVertex2f(-0.94+tx, 0.0+ty);
+        glVertex2f(-0.94+tx, 0.2+ty);
+        glVertex2f(-0.84+tx, 0.2+ty);
+        glVertex2f(-0.84+tx, 0.0+ty);
     glEnd();
 
     glBegin(GL_POLYGON);
-        glVertex2f(-0.94, 0.3);
-        glVertex2f(-0.94, 0.4);
-        glVertex2f(-0.84, 0.4);
-        glVertex2f(-0.84, 0.3);
+        glVertex2f(-0.94+tx, 0.3+ty);
+        glVertex2f(-0.94+tx, 0.4+ty);
+        glVertex2f(-0.84+tx, 0.4+ty);
+        glVertex2f(-0.84+tx, 0.3+ty);
     glEnd();
 }//letra_A
 
@@ -206,13 +201,16 @@ void letra_N(){
 
 void display(){
     glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(tx, ty, 0.0);
         letra_A();
-        letra_G();
-        letra_U();
-        letra_S();
-        letra_T();
-        letra_I();
-        letra_N();
+        //letra_G();
+        //letra_U();
+        //letra_S();
+        //letra_T();
+        //letra_I();
+        //letra_N();
     glFlush();
 }//display
 
@@ -221,12 +219,42 @@ void keyboard(unsigned char key, int x, int y){
         case 27:
             exit(0);
         break;
-    }
+    }//switch
 }//keyboard
 
+void arrowkey(int key, int x, int y){
+    switch (key) {
+        case (GLUT_KEY_LEFT):
+            if(tx <= -1.0)
+                break;
+            tx -= 0.1;
+            xz -= 0.1;
+        break;
+
+        case(GLUT_KEY_RIGHT):
+            if(tx >= 1.0)
+                break;
+            tx += 0.1;
+            xz += 0.1;
+        break;
+
+        case(GLUT_KEY_UP):
+            if(ty >= 1.0)
+                break;
+            ty += 0.1;
+            yz += 0.1;
+        break;
+        case(GLUT_KEY_DOWN):
+            if(ty <= -1.0)
+                break;
+            ty -= 0.1;
+            yz -= 0.1;
+        break;
+    }//switch
+    glutPostRedisplay();
+}//arrowkey
 //Ejecución principal
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
   glutInit(&argc, argv); //es la que echa andar openGL
   //Buffer simple
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB ); //inicia el modo de visualizacion del programa
@@ -236,6 +264,7 @@ int main(int argc, char **argv)
   //Llamada a la función de dibujado
   glutDisplayFunc(display); //OpenGL se refresca solito
   glutKeyboardFunc(keyboard);
+  glutSpecialFunc(arrowkey);
   glutMainLoop();
   return 0;
-}
+}//main
