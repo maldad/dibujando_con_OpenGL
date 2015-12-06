@@ -136,6 +136,7 @@ void keyboard(unsigned char key, int x, int y){
         break;
         //control de escalado
         case 119: //letra w "minuscula"
+        printf("sx: %f\n", sx);
             if(sx >= 2.0)
                 break;
             sx += 0.1;

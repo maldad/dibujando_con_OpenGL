@@ -1,7 +1,7 @@
 ##### Compilar...
-```$ g++ -o poli2 poligono2.cpp -lGL -lGLU -lglut```
+```$ g++ -o objeto archivo.cpp -lGL -lGLU -lglut```
 
-```$ ./poli2```
+```$ ./objeto```
 
 ##### Controles:
 * w ⇒ Zoom in
@@ -12,9 +12,7 @@
 
 * d ⇒ Gira a la derecha
 
-* Números del 3 al 9
-⇒ Dibuja un poligono regular de N lados
-
 * Flechas de direccion: (↑ ↓ ← →) ⇒ Mueven la figura hacia la direccion indicada
 
 * Esc ⇒ Salir del programa
+* Números del 3 al 9 (sólo para el programa del poligono) ⇒ Dibuja un poligono regular de N lados
