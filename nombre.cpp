@@ -262,6 +262,7 @@ void keyboard(unsigned char key, int x, int y){
             anguloRotacion-=10;
         break;
     }//switch
+    glutPostRedisplay();
 }//keyboard
 
 
@@ -327,7 +328,7 @@ int main(int argc, char **argv){
   //Llamada a la función de dibujado
   glutDisplayFunc(display); //OpenGL se refresca solito
   glutReshapeFunc(reshape); //cubre la redimension de la ventana
-  glutIdleFunc(display); //refresca constantemente aunque no haya eventos
+  //glutIdleFunc(display); //refresca constantemente aunque no haya eventos
 
   glutKeyboardFunc(keyboard);
   glutSpecialFunc(arrowkey);
