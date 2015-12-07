@@ -46,14 +46,14 @@ void initRendering() {
 }//initRendering
 
 
-void display(void) {
+void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	//gluLookAt(0.0, 0.0, 10.0,
     //          0.0, 0.0, -100.0,
     //          0.0, 1.0, 0.0);
 	glPushMatrix();
-    
+
     //aplicando rotacion
 	glRotated(rotacionY, 0.0, 1.0, 0.0); //angle, x, y, z
 	glRotated(rotacionX, 1.0, 0.0, 0.0); //angle, x, y, z
@@ -64,13 +64,13 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //frontal
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, 0.5f); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(0.5, 0.5, 0.5);
-        glTexCoord3f(1.0f, 0.0f, 0.5f);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-0.5, 0.5, 0.5);
-        glTexCoord3f(1.0f, 1.0f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5, -0.5, 0.5);
-        glTexCoord3f(0.0f, 1.0f, 0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(0.5, -0.5, 0.5);
 	glEnd();
 
@@ -78,13 +78,13 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //trasera
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, -0.5f); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(0.5, 0.5, -0.5);
-        glTexCoord3f(1.0f, 0.0f, -0.5f);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-0.5, 0.5, -0.5);
-        glTexCoord3f(1.0f, 1.0f, -0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5, -0.5, -0.5);
-        glTexCoord3f(0.0f, 1.0f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(0.5, -0.5, -0.5);
 	glEnd();
 
@@ -92,13 +92,13 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //izquierda
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, -0.5); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(0.5, -0.5, -0.5);
-        glTexCoord3f(1.0f, 0.0f, -0.5);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(0.5, 0.5, -0.5);
-        glTexCoord3f(1.0f, 1.0f, 0.5);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5, 0.5, 0.5);
-        glTexCoord3f(0.0f, 1.0f, 0.5);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(0.5, -0.5, 0.5);
 	glEnd();
 
@@ -106,13 +106,13 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //derecha
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, 0.5); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(-0.5, -0.5, 0.5);
-        glTexCoord3f(1.0f, 0.0f, 0.5);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-0.5, 0.5, 0.5);
-        glTexCoord3f(1.0f, 1.0f, -0.5);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5, 0.5, -0.5);
-        glTexCoord3f(0.0f, 1.0f, -0.5);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-0.5, -0.5, -0.5);
 	glEnd();
 
@@ -120,13 +120,13 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //cima
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, 0.5); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(0.5, 0.5, 0.5);
-        glTexCoord3f(1.0f, 0.0f, -0.5);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(0.5, 0.5, -0.5);
-        glTexCoord3f(1.0f, 1.0f, -0.5);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5, 0.5, -0.5);
-        glTexCoord3f(0.0f, 1.0f, 0.5);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-0.5, 0.5, 0.5);
 	glEnd();
 
@@ -134,14 +134,14 @@ void display(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // set texture parameters
     //fondo
     glBegin(GL_POLYGON);
-        glTexCoord3f(0.0f, 0.0f, -0.5); //set the current texture coordinates
+        glTexCoord2f(0.0f, 0.0f); //set the current texture coordinates
         glVertex3f(0.5, -0.5, -0.5);
-        glTexCoord3f(1.0f, 0.0f, 0.5);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(0.5, -0.5, 0.5);
-        glTexCoord3f(1.0f, 1.0f, 0.5);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5, -0.5, 0.5);
-        glTexCoord3f(0.0f, 1.0f, -0.5);
-        glVertex3f(0.5, -0.5, -0.5);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-0.5, -0.5, -0.5);
 	glEnd();
 
 	glPopMatrix(); // Cierra la matriz
@@ -191,14 +191,22 @@ void keyboard(unsigned char key, int x, int y){
             }
             rotacionZ -= 10;
         break;
+		case 48: //numero 0
+		puts("zero");
+			rotacionX = 0;
+			rotacionY = 0;
+			rotacionZ = 0;
+		break;
     }//switch
     glutPostRedisplay();
 }//keyboard
 
 int main(int argc, char ** argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	//glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutCreateWindow("Dado");
+	glEnable(GL_DEPTH_TEST);
 	initRendering();
 	glutDisplayFunc(display);
 
