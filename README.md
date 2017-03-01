@@ -16,3 +16,6 @@
 
 * Esc ⇒ Salir del programa
 * Números del 3 al 9 (sólo para el programa del poligono) ⇒ Dibuja un poligono regular de N lados
+
+#### Arbol de Pitágoras, encontrado en:
+[Ankur Pawar website]( https://sites.google.com/site/workofap/opengl)
